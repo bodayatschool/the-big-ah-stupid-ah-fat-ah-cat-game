@@ -1,3 +1,6 @@
+namespace SpriteKind {
+    export const BED = SpriteKind.create()
+}
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (patrick.vy == 0) {
         patrick.vy = -170
@@ -168,6 +171,8 @@ tiles.setCurrentTilemap(tilemap`niveau4`)
 controller.moveSprite(patrick, 100, 0)
 patrick.ay = 215
 info.setLife(3)
+let BED = sprites.create(assets.image`myImage2`, SpriteKind.Food)
+tiles.placeOnTile(BED, tiles.getTileLocation(58, 38))
 forever(function () {
     if (patrick.vy == 0) {
         patrick.setImage(img`
