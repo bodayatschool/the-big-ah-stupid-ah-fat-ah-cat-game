@@ -6,6 +6,9 @@ controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Press
         patrick.vy = -170
     }
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile2`, function (sprite, location) {
+    game.gameOver(true)
+})
 controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
     if (old_cat.vy == 0) {
         old_cat.vy = -170
@@ -147,16 +150,6 @@ old_cat.ay = 215
 info.setLife(3)
 controller.player1.moveSprite(patrick, 100, 0)
 controller.player2.moveSprite(old_cat, 100, 0)
-let BED = sprites.create(assets.image`myImage2`, SpriteKind.Food)
-tiles.placeOnTile(BED, tiles.getTileLocation(58, 38))
-forever(function () {
-    if (patrick.vy == 0) {
-        patrick.setImage(assets.image`patrick`)
-        scene.cameraShake(12, 500)
-        patrick.startEffect(effects.ashes, 1000)
-        pauseUntil(() => patrick.vy != 0)
-    }
-})
 forever(function () {
     pauseUntil(() => patrick.y == 753)
     info.changeLifeBy(-1)
@@ -167,5 +160,13 @@ forever(function () {
         scene.cameraShake(12, 500)
         old_cat.startEffect(effects.ashes, 1000)
         pauseUntil(() => old_cat.vy != 0)
+    }
+})
+forever(function () {
+    if (patrick.vy == 0) {
+        patrick.setImage(assets.image`patrick`)
+        scene.cameraShake(12, 500)
+        patrick.startEffect(effects.ashes, 1000)
+        pauseUntil(() => patrick.vy != 0)
     }
 })
